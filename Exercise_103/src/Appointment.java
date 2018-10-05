@@ -1,26 +1,29 @@
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Appointment {
 
-    private LocalDate date;
-    private LocalTime time;
+    
+    private LocalDateTime date;
     private String text;
 
-    public Appointment(LocalDate date, LocalTime time, String text) {
+    DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm");
+    
+    public Appointment(LocalDateTime date,  String text) {
         this.date = date;
-        this.time = time;
+        
         this.text = text;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public LocalTime getTime() {
-        return time;
-    }
+   
+
 
     public String getText() {
         return text;
@@ -28,6 +31,6 @@ public class Appointment {
     
     @Override
     public String toString(){
-        return String.format("%s - %s --> %s", date,time,text);
+        return String.format("%s  --> %s", dtf.format(date),text);
     }
 }

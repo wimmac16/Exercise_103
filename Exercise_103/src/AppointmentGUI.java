@@ -1,3 +1,8 @@
+
+
+import java.time.LocalDateTime;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,11 +15,12 @@
  */
 public class AppointmentGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AppointmentGUI
-     */
+    private AppointmentModell am=new AppointmentModell();
+    
     public AppointmentGUI() {
         initComponents();
+        ListAppointment.setModel(am);
+         am.add(new Appointment(LocalDateTime.of(2002, 3, 10, 10, 10),"Pos"));
     }
 
     /**
@@ -25,19 +31,40 @@ public class AppointmentGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        miAdd = new javax.swing.JMenuItem();
+        miDelete = new javax.swing.JMenuItem();
+        miUpdate = new javax.swing.JMenuItem();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListAppointment = new javax.swing.JList<>();
+
+        miAdd.setText("hinzufügen");
+        jPopupMenu1.add(miAdd);
+
+        miDelete.setText("löschen");
+        jPopupMenu1.add(miDelete);
+
+        miUpdate.setText("ändern");
+        jPopupMenu1.add(miUpdate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        ListAppointment.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
+        ListAppointment.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListAppointment);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jScrollPane1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +105,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ListAppointment;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem miAdd;
+    private javax.swing.JMenuItem miDelete;
+    private javax.swing.JMenuItem miUpdate;
     // End of variables declaration//GEN-END:variables
 }
