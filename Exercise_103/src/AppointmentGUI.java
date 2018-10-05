@@ -49,9 +49,19 @@ public class AppointmentGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miAdd);
 
         miDelete.setText("löschen");
+        miDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDeleteActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miDelete);
 
         miUpdate.setText("ändern");
+        miUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miUpdateActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miUpdate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,6 +109,27 @@ public class AppointmentGUI extends javax.swing.JFrame {
                     e.printStackTrace();
                 }
     }//GEN-LAST:event_formWindowClosing
+
+    private void miDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDeleteActionPerformed
+        int i=ListAppointment.getSelectedIndex();
+        am.remove(i);
+    }//GEN-LAST:event_miDeleteActionPerformed
+
+    private void miUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUpdateActionPerformed
+        int i=ListAppointment.getSelectedIndex();
+         
+        AppointmentDlg dlg = new AppointmentDlg(this, true);
+        dlg.setDlg(am.getElementAt(i));
+        dlg.setVisible(true);
+
+        if (dlg.isOk()) {
+            
+            Appointment a = dlg.getAppointment();
+            am.update(i,a);
+        }
+        dlg.setVisible(false);
+        
+    }//GEN-LAST:event_miUpdateActionPerformed
 
     /**
      * @param args the command line arguments

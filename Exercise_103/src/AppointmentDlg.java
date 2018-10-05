@@ -19,6 +19,14 @@ public class AppointmentDlg extends javax.swing.JDialog {
     public boolean isOk() {
         return ok;
     }
+    public void setDlg(Appointment a){
+        tfYear.setText(Integer.toString(a.getDate().getYear()));
+        tfMonth.setText(Integer.toString(a.getDate().getMonthValue()));
+        tfDay.setText(Integer.toString(a.getDate().getDayOfMonth()));
+        tfHour.setText(Integer.toString(a.getDate().getHour()));
+        tfMinute.setText(Integer.toString(a.getDate().getMinute()));
+        tfText.setText(a.getText());
+    }
 
 
     @SuppressWarnings("unchecked")

@@ -18,7 +18,7 @@ public class AppointmentModell extends AbstractListModel {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public Appointment getElementAt(int index) {
         return appointments.get(index);
     }
 
@@ -53,4 +53,12 @@ public class AppointmentModell extends AbstractListModel {
         oos.flush();
 
     }
+
+    void update(int i,Appointment a) {
+        appointments.remove(i);
+        appointments.add(a);
+        fireContentsChanged(a, i, i);
+    }
+
+
 }
