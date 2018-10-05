@@ -6,6 +6,18 @@ import java.time.format.DateTimeFormatter;
 
 public class Appointment {
 
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setDtf(DateTimeFormatter dtf) {
+        this.dtf = dtf;
+    }
+
     
     private LocalDateTime date;
     private String text;

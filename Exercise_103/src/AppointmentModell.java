@@ -1,11 +1,17 @@
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
+public class AppointmentModell extends AbstractListModel {
 
-public class AppointmentModell extends AbstractListModel{
-    
-    private ArrayList<Appointment> appointments=new ArrayList<>();
+    private ArrayList<Appointment> appointments = new ArrayList<>();
+
     @Override
     public int getSize() {
         return appointments.size();
@@ -13,17 +19,38 @@ public class AppointmentModell extends AbstractListModel{
 
     @Override
     public Object getElementAt(int index) {
-       return appointments.get(index);
+        return appointments.get(index);
     }
-    
-    public void add(Appointment a){
+
+    public void add(Appointment a) {
         appointments.add(a);
-        fireIntervalAdded(appointments.size()-1, appointments.size()-1, 0);
+        fireIntervalAdded(appointments.size() - 1, appointments.size() - 1, 0);
     }
-    
-    public void remove(int i){
+
+    public void remove(int i) {
         appointments.remove(i);
         fireContentsChanged(i, i, i);
     }
-    
+
+    public void load(File f) throws Exception {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+        try {
+            Object o;
+            while ((o = ois.readObject()) != null) {
+                appointments.add((Appointment) o);
+            }
+        } catch (EOFException eofExc) {
+            
+        }
+
+    }
+
+    public void save(File f) throws Exception {
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+        for (Appointment a : appointments) {
+            oos.writeObject(a);
+        }
+        oos.flush();
+
+    }
 }

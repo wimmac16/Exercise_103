@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.time.LocalDateTime;
 
 
@@ -18,6 +19,12 @@ public class AppointmentGUI extends javax.swing.JFrame {
     public AppointmentGUI() {
         initComponents();
         ListAppointment.setModel(am);
+               try{
+            am.load(new File("C:/Users/mwimm/OneDrive/1819_Schule/POS/Exercise_201/termine.bin"));
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         am.add(new Appointment(LocalDateTime.of(2002, 3, 10, 10, 10), "Pos"));
     }
 
@@ -48,6 +55,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miUpdate);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         ListAppointment.setBorder(javax.swing.BorderFactory.createTitledBorder("Termine"));
@@ -78,6 +90,15 @@ public class AppointmentGUI extends javax.swing.JFrame {
         }
         dlg.setVisible(false);
     }//GEN-LAST:event_miAddActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try{
+                    am.save(new File("C:/Users/mwimm/OneDrive/1819_Schule/POS/Exercise_201/termine.bin"));
+                    
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
