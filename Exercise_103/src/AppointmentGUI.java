@@ -19,10 +19,10 @@ public class AppointmentGUI extends javax.swing.JFrame {
     public AppointmentGUI() {
         initComponents();
         ListAppointment.setModel(am);
-               try{
+               try {
             am.load(new File("C:/Users/mwimm/OneDrive/1819_Schule/POS/Exercise_201/termine.bin"));
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         am.add(new Appointment(LocalDateTime.of(2002, 3, 10, 10, 10), "Pos"));

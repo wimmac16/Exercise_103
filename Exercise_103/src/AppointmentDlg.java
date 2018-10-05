@@ -1,25 +1,25 @@
 
 import java.time.LocalDateTime;
 
-
 public class AppointmentDlg extends javax.swing.JDialog {
-
+    
     private boolean ok;
     private Appointment a;
-
+    
     public AppointmentDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
+    
     public Appointment getAppointment() {
         return a;
     }
-
+    
     public boolean isOk() {
         return ok;
     }
-    public void setDlg(Appointment a){
+
+    public void setDlg(Appointment a) {
         tfYear.setText(Integer.toString(a.getDate().getYear()));
         tfMonth.setText(Integer.toString(a.getDate().getMonthValue()));
         tfDay.setText(Integer.toString(a.getDate().getDayOfMonth()));
@@ -27,8 +27,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
         tfMinute.setText(Integer.toString(a.getDate().getMinute()));
         tfText.setText(a.getText());
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -193,7 +192,7 @@ public class AppointmentDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_btStopActionPerformed
 
     private void btOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKActionPerformed
-
+        
         a = new Appointment(LocalDateTime.of(Integer.parseInt(tfYear.getText()),
                 Integer.parseInt(tfMonth.getText()),
                 Integer.parseInt(tfDay.getText()),

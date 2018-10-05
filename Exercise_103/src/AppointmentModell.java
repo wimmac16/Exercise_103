@@ -10,7 +10,7 @@ import javax.swing.AbstractListModel;
 
 public class AppointmentModell extends AbstractListModel {
 
-    private ArrayList<Appointment> appointments = new ArrayList<>();
+    private final ArrayList<Appointment> appointments = new ArrayList<>();
 
     @Override
     public int getSize() {
@@ -25,6 +25,7 @@ public class AppointmentModell extends AbstractListModel {
     public void add(Appointment a) {
         appointments.add(a);
         fireIntervalAdded(appointments.size() - 1, appointments.size() - 1, 0);
+
     }
 
     public void remove(int i) {
@@ -40,7 +41,7 @@ public class AppointmentModell extends AbstractListModel {
                 appointments.add((Appointment) o);
             }
         } catch (EOFException eofExc) {
-            
+
         }
 
     }
@@ -54,11 +55,11 @@ public class AppointmentModell extends AbstractListModel {
 
     }
 
-    void update(int i,Appointment a) {
+    public void update(int i, Appointment a) {
         appointments.remove(i);
         appointments.add(a);
         fireContentsChanged(a, i, i);
-    }
 
+    }
 
 }

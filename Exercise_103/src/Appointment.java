@@ -1,8 +1,6 @@
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 public class Appointment {
 
@@ -18,15 +16,14 @@ public class Appointment {
         this.dtf = dtf;
     }
 
-    
     private LocalDateTime date;
     private String text;
 
-    DateTimeFormatter dtf=DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm");
-    
-    public Appointment(LocalDateTime date,  String text) {
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy - HH.mm");
+
+    public Appointment(LocalDateTime date, String text) {
         this.date = date;
-        
+
         this.text = text;
     }
 
@@ -34,15 +31,12 @@ public class Appointment {
         return date;
     }
 
-   
-
-
     public String getText() {
         return text;
     }
-    
+
     @Override
-    public String toString(){
-        return String.format("%s  --> %s", dtf.format(date),text);
+    public String toString() {
+        return String.format("%s  --> %s", dtf.format(date), text);
     }
 }
