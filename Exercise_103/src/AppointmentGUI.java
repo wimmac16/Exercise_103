@@ -1,5 +1,4 @@
 
-
 import java.time.LocalDateTime;
 
 
@@ -8,21 +7,19 @@ import java.time.LocalDateTime;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author mwimm
  */
 public class AppointmentGUI extends javax.swing.JFrame {
 
-    private AppointmentModell am=new AppointmentModell();
-    
+    private AppointmentModell am = new AppointmentModell();
+
     public AppointmentGUI() {
         initComponents();
         ListAppointment.setModel(am);
-         am.add(new Appointment(LocalDateTime.of(2002, 3, 10, 10, 10),"Pos"));
+        am.add(new Appointment(LocalDateTime.of(2002, 3, 10, 10, 10), "Pos"));
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,6 +34,11 @@ public class AppointmentGUI extends javax.swing.JFrame {
         ListAppointment = new javax.swing.JList<>();
 
         miAdd.setText("hinzufügen");
+        miAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miAdd);
 
         miDelete.setText("löschen");
@@ -54,6 +56,7 @@ public class AppointmentGUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ListAppointment.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(ListAppointment);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -64,6 +67,17 @@ public class AppointmentGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
+        AppointmentDlg dlg = new AppointmentDlg(this, true);
+        dlg.setVisible(true);
+
+        if (dlg.isOk()) {
+            Appointment a = dlg.getAppointment();
+            am.add(a);
+        }
+        dlg.setVisible(false);
+    }//GEN-LAST:event_miAddActionPerformed
 
     /**
      * @param args the command line arguments
